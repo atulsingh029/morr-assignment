@@ -65,7 +65,7 @@ def create(request):
     if request.user.is_authenticated:
         user = CustomUser.objects.get(username=request.user)
         data = request.data
-        duplicates = Contact.objects.filter(email=data['email'])
+        duplicates = Contact.objects.filter(email=data['email'], owner=user)
         if len(duplicates) == 0:
             newContact = Contact(owner=user, email=data['email'], name=data['name'].capitalize())
             for info in data:
