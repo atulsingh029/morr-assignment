@@ -1,0 +1,34 @@
+CREATE : For creating new contact in current logged in user's account 
+	type	:POST
+	url		:create/
+	data	:{"name":"name", "email":"email", "phone1":"phone", "phone2":"phone", "address":"address"}
+	
+	
+READ :
+	type	:GET  
+	url		:read/<email>
+	returns	:contact details of specified email
+	
+	
+	type	:GET
+	url		:readAll/
+	returns	:list of all contacts of current logged in user
+	
+	
+UPDATE : For updating existing contacts
+	type	:POST
+	url		:update/
+	data	:{"key":"<current email>", "name":"name", "email":"email", "phone1":"phone", "phone2":"phone", "address":"address"} //pass only fields you want to update
+	
+	
+DELETE : To delete the specified contact from current logged in user
+	type	:GET  
+	url		:delete/<email>
+	
+	
+SEARCH : To search contacts using name or email
+	type	:GET
+	url		:search/?q=<querry>&page=<page>
+	returns	:{"has_next_page": <boolean>, "has_previous_page": <boolean>, "current_page_number": <page number>, "end_index":<result end index>, "total_results_found": <number of results>, "search_results": <paginated results>, }
+	
+Note : Application is based on session based authentication provided by django's AbstractUser model.
